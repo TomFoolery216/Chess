@@ -1,11 +1,11 @@
-/* 
 /*
  * ChessGame
  * 11SP-CSIS-345-01 OBJ ORINTD PROGRAMNG USNG JAVA
  * Kyle X. Naylor, February 20, 2010
  */
 
-public class Tester{
+public class Tester
+{
        public static void main(String arg[])
        {	
 	       //makes a object

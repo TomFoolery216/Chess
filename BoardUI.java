@@ -2,51 +2,54 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class BoardUI extends JPanel implements MouseListener{
-	
-	
-	 protected SquareUI [][] showBoard;
-	 protected Board board = new Board();
-	 protected Game game = new Game();
-         String curDir = System.getProperty("user.dir");
-         boolean clicked = true;
-         Component components[]; 
-	Piece piece;
-	Squares from, to;
-         
-         private ImageIcon pawn0imj = new ImageIcon(curDir + "\\pawn0.jpg");
-         private ImageIcon pawn1imj = new ImageIcon(curDir + "\\pawn1.jpg");
-         private ImageIcon wKingimj = new ImageIcon(curDir + "\\whiteKing.jpg");
-         private ImageIcon bKingimj = new ImageIcon(curDir + "\\blackKing.jpg");
-         private ImageIcon wQueenimj = new ImageIcon(curDir + "\\whiteQueen.jpg");
-         private ImageIcon bQuennimj = new ImageIcon(curDir + "\\blackQueen.jpg");
-         private ImageIcon wRookimj = new ImageIcon(curDir + "\\whiteRook.jpg");
-         private ImageIcon bRookimj = new ImageIcon(curDir + "\\blackRook.jpg");
-         private ImageIcon wKightimj = new ImageIcon(curDir + "\\whiteKnight.jpg");
-         private ImageIcon bKightimj = new ImageIcon(curDir + "\\blackKnight.jpg");
-         private ImageIcon wBishopimj = new ImageIcon(curDir + "\\whiteBishop.jpg");
-         private ImageIcon bBishopimj = new ImageIcon(curDir + "\\blackBishop.jpg");
-	
-	JLabel whiteKing = new JLabel(wKingimj);
-	JLabel blackKing = new JLabel(bKingimj);
-	JLabel whiteQueen = new JLabel(wQueenimj);
-	JLabel blackQueen = new JLabel(bQuennimj);
-	
-	JLabel blackRook1 = new JLabel(bRookimj);
-	JLabel blackRook2 = new JLabel(bRookimj);
-	JLabel whiteRook1 = new JLabel(wRookimj);
-	JLabel whiteRook2 = new JLabel(wRookimj);
-	
-	JLabel blackKnight1 = new JLabel(bKightimj);
-	JLabel blackKnight2 = new JLabel(bKightimj);
-	JLabel whiteKnight1 = new JLabel(wKightimj);
-	JLabel whiteKnight2 = new JLabel(wKightimj);
+public class BoardUI extends JPanel implements MouseListener
+{
+    protected SquareUI [][] showBoard;
+    protected Board board = new Board();
+    protected Game game = new Game();
+
+    String curDir = "/home/kxnaylor/Chess/";
         
-	JLabel blackBishop1 = new JLabel(bBishopimj);
-	JLabel blackBishop2 = new JLabel(bBishopimj);
-	JLabel whiteBishop1 = new JLabel(wBishopimj);
-	JLabel whiteBishop2 = new JLabel(wBishopimj);
-	
+    boolean clicked = true;
+
+    Component components[]; 
+
+    Piece piece;
+    Squares from, to;
+             
+    private ImageIcon pawn0imj = new ImageIcon(curDir + "/pawn0.jpg");
+    private ImageIcon pawn1imj =  new ImageIcon(curDir + "/pawn1.jpg");
+    private ImageIcon wKingimj = new ImageIcon(curDir + "/whiteKing.jpg");
+    private ImageIcon bKingimj = new ImageIcon(curDir + "/blackKing.jpg");
+    private ImageIcon wQueenimj = new ImageIcon(curDir + "/whiteQueen.jpg");
+    private ImageIcon bQuennimj = new ImageIcon(curDir + "/blackQueen.jpg");
+    private ImageIcon wRookimj =  new ImageIcon(curDir + "/whiteRook.jpg");
+    private ImageIcon bRookimj = new ImageIcon(curDir + "/blackRook.jpg");
+    private ImageIcon wKightimj = new ImageIcon(curDir + "/whiteKnight.jpg");
+    private ImageIcon bKightimj = new ImageIcon(curDir + "/blackKnight.jpg");
+    private ImageIcon wBishopimj = new ImageIcon(curDir + "/whiteBishop.jpg");
+    private ImageIcon bBishopimj = new ImageIcon(curDir + "/blackBishop.jpg");
+                                 
+    JLabel whiteKing = new JLabel(wKingimj);
+    JLabel blackKing = new JLabel(bKingimj);
+    JLabel whiteQueen = new JLabel(wQueenimj);
+    JLabel blackQueen = new JLabel(bQuennimj);
+    
+    JLabel blackRook1 = new JLabel(bRookimj);
+    JLabel blackRook2 = new JLabel(bRookimj);
+    JLabel whiteRook1 = new JLabel(wRookimj);
+    JLabel whiteRook2 = new JLabel(wRookimj);
+    
+    JLabel blackKnight1 = new JLabel(bKightimj);
+    JLabel blackKnight2 = new JLabel(bKightimj);
+    JLabel whiteKnight1 = new JLabel(wKightimj);
+    JLabel whiteKnight2 = new JLabel(wKightimj);
+        
+    JLabel blackBishop1 = new JLabel(bBishopimj);
+    JLabel blackBishop2 = new JLabel(bBishopimj);
+    JLabel whiteBishop1 = new JLabel(wBishopimj);
+    JLabel whiteBishop2 = new JLabel(wBishopimj);
+    
 //	Game game = new Game();
 
 	//Constructor
@@ -54,6 +57,7 @@ BoardUI(SquareUI s)
 {
 	setSize(0,190);
 	setLayout(new GridLayout(8,8));
+
 	this.setShowBoard(createChessBoardUI());
         
         for (int i = 0; i < 8; i++)
@@ -64,13 +68,14 @@ BoardUI(SquareUI s)
                 }
             }
 		
-for (int i = 0; i < 8; i++) 
-{ 
-//showBoard[6][i].add(pawn0); 
-showBoard[6][i].add(new JLabel(new ImageIcon(curDir + "\\pawn0.jpg"))); 
-showBoard[1][i].add(new JLabel(new ImageIcon(curDir + "\\pawn8.jpg"))); 
+    for (int i = 0; i < 8; i++) 
+    { 
+        //showBoard[6][i].add(pawn0); 
+        showBoard[6][i].add(new JLabel(new ImageIcon(curDir + "/pawn0.jpg"))); 
+        showBoard[1][i].add(new JLabel(new ImageIcon(curDir + "/pawn8.jpg"))); 
 
-} 	    
+    } 	    
+
 	showBoard[7][4].add(whiteKing);
 	showBoard[0][4].add(blackKing);
 	showBoard[7][3].add(whiteQueen);
