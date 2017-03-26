@@ -8,13 +8,12 @@ public class Tester
 {
        public static void main(String arg[])
        {	
-	       //makes a object
+           //makes a object
 	       Board board = new Board();
 	       Game game = new Game();
 	      
-	//----------------------------------------------------------------------
-	     
-	           //function calls 
+           //function calls 
+           
 	       System.out.println("\nChessgame\n"); 
 	       game.initPlayer();
 	       game.initPiece();
@@ -22,20 +21,15 @@ public class Tester
 	 
 	       game.player[1].setName("Deep Blue IBM TM");
 	       game.player[0].setName("Garry Kasparov");
+
 	       game.player[1].setColor("Black");
 	       game.player[0].setColor("White");
 	      
 	       //prints the player array
 	       System.out.println(game);
-	      // System.out.println(board.squares[1][7]);
-	       //System.out.println("\n");
-	       //System.out.println(game.pieces[29]);
-	       //System.out.println(game.pieces[31]);
-	       
-	       //System.out.println(board.getSquares(game.pieces[11]));
-	       
-		//System.out.println(squares.getId("7F"));
-		
+		    
+        ChessUI2.moveLog(game);
+
 		System.out.println(board.getSqs("G6"));
 		
 

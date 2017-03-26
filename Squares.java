@@ -4,15 +4,15 @@
  * Kyle X. Naylor, February 20, 2010
  */
 
-public class Squares{
+public class Squares
+{
+
 	public String id;
 	private int row;
 	private int column;
 	private int color;
 	
-
-	
-//-----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 	Squares(int r, int c)
 	{
 		row = r;
@@ -23,9 +23,9 @@ public class Squares{
 		setRow(r);
 		setColumn(c);
 		
-		
 	}
-//-----------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------
 
 	public void setId(String x)
 	{

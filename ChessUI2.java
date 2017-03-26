@@ -30,7 +30,7 @@ public class ChessUI2 extends JFrame implements ActionListener
     newGameButton, newPlayerButton, loadGameButton,
     saveGameButton, displayNamesButton, soundClip;
     
-	JTextArea  textArea2,textArea3;
+	public static JTextArea textArea2,textArea3;
 	
     JPanel Panel1, Panel2, Panel3, Panel4, Panel5;
 
@@ -218,13 +218,13 @@ public static void main(String args[])
     Game g = new Game();
     Board board = new Board();
              
-        g.initPlayer();
-        g.initPiece();
+    g.initPlayer();
+    g.initPiece();
     board.initColor();
 
     ChessUI2 UI = new ChessUI2(g); 	
 
-    //System.out.println(squares.toString()); 
+    //moveLog(squares.toString()); 
 }
 
 public void actionPerformed(ActionEvent e)
@@ -328,7 +328,7 @@ public void actionPerformed(ActionEvent e)
     {
         dispose();
         System.exit(0);  // terminate
-}
+    }
 
 	
 	public void displayNames()
@@ -371,5 +371,9 @@ public void actionPerformed(ActionEvent e)
 		}
 	}
 	
-	
+    public static void moveLog(String strMove)	
+    {
+        textArea3.setText(strMove);
+        textArea3.append("\n");
+    }
 }
