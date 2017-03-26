@@ -8,9 +8,10 @@ import java.net.MalformedURLException;
 public class ChessUI2 extends JFrame implements ActionListener    
 {
     Game game;
-	
-    String curDir = "/home/kxnaylor/Chess/";
-	
+    
+    String curDir = getClass().getProtectionDomain()
+    .getCodeSource().getLocation().getPath();
+ 
     private ImageIcon slidePanelimj = new ImageIcon(curDir 
                                                         + "/slidePanel.jpg");
     private ImageIcon ChessPartyimj = new ImageIcon(curDir 
@@ -19,6 +20,8 @@ public class ChessUI2 extends JFrame implements ActionListener
                                                         + "/symbol.jpg");
     private ImageIcon starimj = new ImageIcon(curDir 
                                                         + "/star.jpg");
+    private ImageIcon bigWuimj = new ImageIcon(curDir
+                                                        + "/bigWu.jpg");
     private AudioClip clip1,clip2, clip3;
    
     private URL file1, file2, file3;
@@ -26,191 +29,214 @@ public class ChessUI2 extends JFrame implements ActionListener
 	JButton moveButton, clearButton, closeButton, 
     newGameButton, newPlayerButton, loadGameButton,
     saveGameButton, displayNamesButton, soundClip;
+    
 	JTextArea  textArea2,textArea3;
-	JPanel Panel1, Panel2, Panel3, Panel4, Panel5;
-	JLabel label1, label2, turnLB, 
-    label3, label4;	JTextField 
-    textfield1,textfield2, p1field, p2field;
+	
+    JPanel Panel1, Panel2, Panel3, Panel4, Panel5;
+
+    JLabel label1, label2, turnLB, 
+    label3, label4;
+    
+    JTextField textfield1,textfield2, p1field, p2field;
 
     SquareUI s;	
+
 	BoardUI boardUI = new BoardUI(s);
 	
 // constructor
-    public ChessUI2(Game g)
-    {	
-        game = g;
+public ChessUI2(Game g)
+{	
+    game = g;
 
-        textArea2 = new JTextArea();
-        textArea3 = new JTextArea();
+    textArea2 = new JTextArea();
+    textArea3 = new JTextArea(64,32);
 
-        JLabel slidePanel = new JLabel(slidePanelimj);
-        JLabel ChessParty = new JLabel(ChessPartyimj);
-        JLabel symbol = new JLabel(symbolimj);
-        JLabel star = new JLabel(starimj);
+    JLabel slidePanel = new JLabel(slidePanelimj);
+    JLabel ChessParty = new JLabel(ChessPartyimj);
+    JLabel symbol = new JLabel(symbolimj);
+    JLabel star = new JLabel(starimj);
+    JLabel bigWu = new JLabel(bigWuimj);
+    
+    moveButton = new JButton("\bMOVE\b");
+    moveButton.setPreferredSize(new Dimension(128, 32));
+
+    closeButton = new JButton("CLOSE"); 
+    closeButton.setPreferredSize(new Dimension(128, 32));
+
+    newGameButton = new JButton("New Game");
+    newGameButton.setPreferredSize(new Dimension(128, 32));
+    
+    newPlayerButton = new JButton("New Player");
+    newPlayerButton.setPreferredSize(new Dimension(128,32));
+    
+    loadGameButton = new JButton("LOAD");
+    loadGameButton.setPreferredSize(new Dimension(128,32));
+
+    saveGameButton = new JButton("SAVE");
+    saveGameButton.setPreferredSize(new Dimension(128,32));
+
+    displayNamesButton = new JButton("Display Names");
+    displayNamesButton.setPreferredSize(new Dimension(128,32));
+
+    soundClip = new JButton("Kung Fu Master's Advice");
+    soundClip.setPreferredSize(new Dimension(196,32));
+
+    turnLB = new JLabel();		
+
+    label1 = new JLabel("From:");
+    label1.setPreferredSize(new Dimension(64,16));
+
+    label2 = new JLabel("To:");
+    label2.setPreferredSize(new Dimension(64,16));
+    
+    label3 = new JLabel("Player 1");
+    label3.setPreferredSize(new Dimension(64,16));
+    
+    label4 = new JLabel("Player 2");
+    label4.setPreferredSize(new Dimension(64,16));
+
+    if (game.turnPlayer.getTurn()==0)
+    {
+        turnLB.setText("WHITE Player's Turn");
+    }
+    else if (game.turnPlayer.getTurn()==1)
+    {
+        turnLB.setText("BLACK Player's Turn");
+    } 
+    
+    //setLayout(new GridLayout(0,0));
+    textfield1 = new JTextField("Enter from Square ID",12);
+    textfield2 = new JTextField("Enter to Square ID",12);
+
+    p1field = new JTextField("Enter Name",12);
+    p2field = new JTextField("Enter Name",12);
         
-        moveButton = new JButton("  MOVE ");
-        closeButton = new JButton(" CLOSE"); 
-        newGameButton = new JButton("New Game ");
-        newPlayerButton = new JButton("New Player");
-        loadGameButton = new JButton(" LOAD  ");
-        saveGameButton = new JButton("     SAVE      ");
-        displayNamesButton = new JButton("Display Names");
-        soundClip = new JButton("Kung Fu Master's Advice");
-                
-        turnLB = new JLabel();		
-        label1 = new JLabel("From:    ");
-        label2 = new JLabel("To:         ");
-        label3 = new JLabel("Player 1");
-        label4 = new JLabel("Player 2");
+    Panel1 = new JPanel();
+    Panel2 = new JPanel();
+    Panel3 = new JPanel();
+    Panel4 = new JPanel(); 
+    Panel5 = new JPanel(); 
 
-        if (game.turnPlayer.getTurn()==0)
-        {
-            turnLB.setText("WHITE Player's Turn");
-        }
-        else if (game.turnPlayer.getTurn()==1)
-        {
-            turnLB.setText("BLACK Player's Turn");
-        } 
+    Panel1.add(slidePanel);
+    Panel1.add(moveButton);
+    Panel1.add(newGameButton);
+    Panel1.add(closeButton);
+    Panel1.add(newPlayerButton);
+    Panel1.add(loadGameButton);
+    Panel1.add(saveGameButton);
+    Panel1.add(displayNamesButton);
+    Panel1.add(turnLB);
+
+    Panel2.add(symbol);
+    Panel2.add(label1);
+    Panel2.add(textfield1);
+    Panel2.add(label2);
+    Panel2.add(textfield2);
+    Panel2.add(label3);
+    Panel2.add(p1field);
+    Panel2.add(label4);
+    Panel2.add(p2field);
+    Panel2.add(star);
+    Panel2.add(BorderLayout.EAST, star);
+    Panel2.add(star);
+
+    Panel3.setLayout(new BorderLayout());
+    Panel3.add(BorderLayout.SOUTH, soundClip);
+    Panel3.add(BorderLayout.NORTH, ChessParty);
+
+    Panel4.setLayout(new BorderLayout());
+    Panel4.add(BorderLayout.CENTER, boardUI);
+
+    Panel5.setLayout(new BorderLayout());
+    Panel5.add(BorderLayout.NORTH, bigWu);
+    Panel5.add(BorderLayout.CENTER, textArea3);
+    
+    Container gameContainer = getContentPane();
+
+    gameContainer.add("North",Panel1);
+    gameContainer.add("South",Panel2);
+    gameContainer.add("West", Panel3);
+    gameContainer.add("Center",Panel4);
+    gameContainer.add("East",Panel5);
         
-        //setLayout(new GridLayout(0,0));
-        textfield1 = new JTextField("Enter from Square ID",12);
-        textfield2 = new JTextField("Enter to Square ID",12);
+    try 
+    {
+        file1 = new URL("file:" + System.getProperty("user.dir") 
+        + "/wutang.wav");
 
-        p1field = new JTextField("Enter Name",12);
-        p2field = new JTextField("Enter Name",12);
-            
-        Panel1 = new JPanel();
-        Panel2 = new JPanel();
-        Panel3 = new JPanel();
-        Panel4 = new JPanel(); 
-        Panel5 = new JPanel(); 
+        file2 = new URL("file:" + System.getProperty("user.dir") 
+        + "/ruckus.wav");
 
-        Panel1.add(slidePanel);
-        Panel1.add(moveButton);
-        
-        //Panel2.add(slidePanel);
-        Panel1.add(newGameButton);
-        Panel1.add(closeButton);
-        Panel1.add(newPlayerButton);
-        Panel1.add(loadGameButton);
-        Panel1.add(saveGameButton);
-        Panel1.add(displayNamesButton);
-        Panel1.add(turnLB);
+        file3 = new URL("file:" + System.getProperty("user.dir") 
+        + "/fight.wav");
 
-        //gameFrame.getContentPane().add(Panel1);
-        //gameFrame.pack();
-        Panel2.add(symbol);
-        Panel2.add(label1);
-        Panel2.add(textfield1);
-        Panel2.add(label2);
-        Panel2.add(textfield2);
-        Panel2.add(label3);
-        Panel2.add(p1field);
-        Panel2.add(label4);
-        Panel2.add(p2field);
-        Panel2.add(star);
+        clip1 = JApplet.newAudioClip(file1);
+        clip2 = JApplet.newAudioClip(file2);
+        clip3 = JApplet.newAudioClip(file3);
+    }
 
-        Panel3.setLayout(new BorderLayout());
-        Panel3.add(BorderLayout.SOUTH, soundClip);
-        Panel3.add(BorderLayout.NORTH, ChessParty);
+    catch (MalformedURLException e) 
+    {
+        System.err.println(e.getMessage());
+    }
 
-        Panel4.setLayout(new BorderLayout());
-        Panel4.add(BorderLayout.CENTER, boardUI);
+    moveButton.addActionListener(this);
+    closeButton.addActionListener(this);
+    newPlayerButton.addActionListener(this);
+    loadGameButton.addActionListener(this);
+    saveGameButton.addActionListener(this);
+    displayNamesButton.addActionListener(this);
+    newGameButton.addActionListener(this);
+    soundClip.addActionListener(this);
 
-        Panel5.setLayout(new BorderLayout());
-        Panel5.add(BorderLayout.CENTER, textArea3);
-        
-        
-        Container c = getContentPane();
+    textArea3.setText("");
 
-        //setLayout(new GridLayout(1,0));
-        //c.add(BorderLayout.WEST,leftPanel);
-        // add text area to the center
+    setResizable(true);
+       
+    setTitle(" KXN's Wu Tang Chess");
+    
+    setVisible(true);
 
-        c.add("North",Panel1);
-        c.add("South",Panel2);
-        c.add("West", Panel3);
-        c.add("Center",Panel4);
-        c.add("East",Panel5);
-            
-        try 
-        {
-            file1 = new URL("file:" + System.getProperty("user.dir") 
-            + "/wutang.wav");
+    setPreferredSize(new Dimension(1350, 750));
 
-            file2 = new URL("file:" + System.getProperty("user.dir") 
-            + "/ruckus.wav");
+    pack();
+    clip2.play();
+    
+    addWindowListener
+    ( 
+        new WindowAdapter() 
+        { 
+            public void windowClosing(WindowEvent event) 
+                {shutDown();} 
+        }// end of inner class definition	  
+     ); // end of argument sent to addWindowListener method	 
+}
+    
+// in main create an instance of ChessUI
+public static void main(String args[])
+{	
+    Game g = new Game();
+    Board board = new Board();
+             
+        g.initPlayer();
+        g.initPiece();
+    board.initColor();
 
-            file3 = new URL("file:" + System.getProperty("user.dir") 
-            + "/fight.wav");
+    ChessUI2 UI = new ChessUI2(g); 	
 
-            clip1 = JApplet.newAudioClip(file1);
-            clip2 = JApplet.newAudioClip(file2);
-            clip3 = JApplet.newAudioClip(file3);
-        }
+    //System.out.println(squares.toString()); 
+}
 
-        catch (MalformedURLException e) 
-        {
-            System.err.println(e.getMessage());
-        }
-	
-		moveButton.addActionListener(this);
-		closeButton.addActionListener(this);
-		newPlayerButton.addActionListener(this);
-		loadGameButton.addActionListener(this);
-		saveGameButton.addActionListener(this);
-		displayNamesButton.addActionListener(this);
-		newGameButton.addActionListener(this);
-        soundClip.addActionListener(this);
-               
-textArea3.setText("                                                                                                       ");
+public void actionPerformed(ActionEvent e)
+{	
+    
+    // see which button was clicked
+    if(boardUI.clicked==false)
+    {
 
-        setResizable(true);
-  	       
-		setTitle(" KXN's Wu Tang Chess");
-		
-		setVisible(true);
+        clip3.play();
 
-		setPreferredSize(new Dimension(1350, 750));
-
-		pack();
-		clip2.play();
-		
-		addWindowListener
-		( 
-            new WindowAdapter() 
-			{ 
-				public void windowClosing(WindowEvent event) 
-  	 				{shutDown();} 
-			}// end of inner class definition	  
-		 ); // end of argument sent to addWindowListener method	 
-	}
-		
-	// in main create an instance of ChessUI
-	public static void main(String args[])
-	{	
-		Game g = new Game();
-		Board board = new Board();
-				 
-			g.initPlayer();
-			g.initPiece();
-		board.initColor();
-
-		ChessUI2 UI = new ChessUI2(g); 	
-
-        //System.out.println(squares.toString()); 
-	}
-	
-	public void actionPerformed(ActionEvent e)
-	{	
-		
-        // see which button was clicked
-		if(boardUI.clicked==false)
-		{
-
-            clip3.play();
-
-		}
+    }
 		
 	
 		if(e.getSource() == moveButton)

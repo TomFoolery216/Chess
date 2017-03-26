@@ -8,7 +8,10 @@ public class BoardUI extends JPanel implements MouseListener
     protected Board board = new Board();
     protected Game game = new Game();
 
-    String curDir = "/home/kxnaylor/Chess/";
+   // String curDir = "/home/kxnaylor/Chess/";
+
+    String curDir = getClass().getProtectionDomain()
+    .getCodeSource().getLocation().getPath();
         
     boolean clicked = true;
 
