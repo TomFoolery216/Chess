@@ -373,7 +373,7 @@ public void actionPerformed(ActionEvent e)
 	
     public static void moveLog(String strMove)	
     {
-        textArea3.setText(strMove);
-        textArea3.append("\n");
+        //textArea3.setText(strMove);
+        textArea3.append(strMove + "\n");
     }
 }

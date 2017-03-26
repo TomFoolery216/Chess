@@ -6,6 +6,7 @@
  
 public class Board // this declares the function board
 { 
+
 	String column[] = {"1","2","3","4","5","6","7","8"};
 	String row[] = {"A","B","C","D","E","F","G","H"};
 	

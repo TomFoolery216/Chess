@@ -22,7 +22,6 @@ public class Squares
 		id = rowID + columnID ;
 		setRow(r);
 		setColumn(c);
-		
 	}
 
 //--------------------------------------------------------------------------
@@ -32,7 +31,7 @@ public class Squares
 		id = x;
 	}	
 	
-// get function to return the value for column
+    // get function to return the value for column
 	public String getId()
 	{
 		return id;
@@ -43,19 +42,19 @@ public class Squares
 		column = c;
 	}	
 	
-// get function to return the value for column
+    // get function to return the value for column
 	public int getColumn()
 	{
 		return column;
 	}
 	
-// set function to set the value for row
+    // set function to set the value for row
 	public void setRow(int r)
 	{
 		row = r;
 	}
 	
-// get function to return the value of row
+    // get function to return the value of row
 	public int getRow()
 	{
 		return row;
@@ -69,13 +68,15 @@ public class Squares
 	public int getColor()
 	{
 		//color = row + column % 2;
-		
 		return color;
 	}
 	
-		public String toString()
+    public String toString()
 	{
-		return  "\t \nSq Row=" + getRow() + "\t"+ "\nSq Column=" + getColumn() + "\t"+ "\nPiece ID:" + getId() +"\n";
+		return  "\t \nSq Row=" + getRow() 
+        + "\t"+ "\nSq Column=" + getColumn() 
+        + "\t"+ "\nPiece ID:" + getId() 
+        +"\n";
  	}
 	
 }

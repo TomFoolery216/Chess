@@ -28,23 +28,23 @@ public class Tester
 	       //prints the player array
 	       System.out.println(game);
 		    
-        ChessUI2.moveLog(game);
+           ChessUI2.moveLog(game);
 
-		System.out.println(board.getSqs("G6"));
-		
+           System.out.println(board.getSqs("G6"));
 
-		System.out.println(game.getPiece(board.getSqs("G6"))); // I call this just to show what the piece is on before it is moved
+           System.out.println(game.getPiece(board.getSqs("G6"))); // I call this just to show what the piece is on before it is moved
 	 
-		try
-		{
-		    game.selectSquare(game.pieces[29],  board.getSqs("G6"), board.getSqs("E6"));
-		}
-		        
-	catch(Exception e)//this catches the exception that was thrown and displays the proper message that is assoicated with that exception
-	{
-            System.out.println(e.getMessage()); 
-	
-	}
+                try
+                {
+                    game.selectSquare(game.pieces[29],  
+                    board.getSqs("G6"), board.getSqs("E6"));
+                }
+                catch(Exception e)//this catches the exception that was thrown and displays the proper message that is assoicated with that exception
+                {
+                    System.out.println(e.getMessage()); 
+                    ChessUI.moveLog(e.getMessage());
+                }
+
 	System.out.println(game.getPiece(board. squares[4][5])); 
 	
 	

@@ -8,8 +8,6 @@
 
 public class Pawn extends Piece
 {
-	
-	
 	public boolean movePiece(Piece x,  Squares fromSq, Squares toSq)
 	{
 	
@@ -24,10 +22,12 @@ public class Pawn extends Piece
 			x.setRow(x.getRow()+2 );
 			}
 		}
+
 	if(x.getColor()=="White" && fromSq.getColumn() == toSq.getColumn())
 		{
 			x.setRow(toSq.getRow());
 		}
+
 	if(x.getColor()=="Black" && x.getRow()==6  && fromSq.getColumn() == toSq.getColumn())// This moves the pawn if it is on row six. So the piece can move -2
 		{
 			if(toSq.getRow() == fromSq.getRow() - 1)
@@ -39,14 +39,13 @@ public class Pawn extends Piece
 			x.setRow(x.getRow()-2 );
 			}
 		}
+
 	if(x.getColor()=="Black" && fromSq.getColumn() == toSq.getColumn())
 		{
 			x.setRow(toSq.getRow());
 		}
 		return true;
 	}
-	
-	
 	
 }
  

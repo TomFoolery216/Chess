@@ -4,11 +4,10 @@ import java.awt.event.*;
 
 public class BoardUI extends JPanel implements MouseListener
 {
+    
     protected SquareUI [][] showBoard;
     protected Board board = new Board();
     protected Game game = new Game();
-
-   // String curDir = "/home/kxnaylor/Chess/";
 
     String curDir = getClass().getProtectionDomain()
     .getCodeSource().getLocation().getPath();
@@ -53,31 +52,34 @@ public class BoardUI extends JPanel implements MouseListener
     JLabel whiteBishop1 = new JLabel(wBishopimj);
     JLabel whiteBishop2 = new JLabel(wBishopimj);
     
-//	Game game = new Game();
+    //Game game = new Game();
 
-	//Constructor
+//Constructor
 BoardUI(SquareUI s)
 {
-	setSize(0,190);
+
+    setSize(0,190);
+
 	setLayout(new GridLayout(8,8));
 
 	this.setShowBoard(createChessBoardUI());
         
         for (int i = 0; i < 8; i++)
+        {
+            for (int k =0; k < 8; k++)
             {
-                for (int k =0; k < 8; k++)
-                {
-                      showBoard[i][k].addMouseListener(this);
-                }
+              showBoard[i][k].addMouseListener(this);
             }
+        }
 		
-    for (int i = 0; i < 8; i++) 
-    { 
-        //showBoard[6][i].add(pawn0); 
-        showBoard[6][i].add(new JLabel(new ImageIcon(curDir + "/pawn0.jpg"))); 
-        showBoard[1][i].add(new JLabel(new ImageIcon(curDir + "/pawn8.jpg"))); 
+        for (int i = 0; i < 8; i++) 
+        { 
+            showBoard[6][i].add(new JLabel(new ImageIcon(curDir 
+                                                            + "/pawn0.jpg"))); 
+            showBoard[1][i].add(new JLabel(new ImageIcon(curDir 
+                                                            + "/pawn8.jpg"))); 
 
-    } 	    
+        } 	    
 
 	showBoard[7][4].add(whiteKing);
 	showBoard[0][4].add(blackKing);
@@ -100,18 +102,19 @@ BoardUI(SquareUI s)
 	showBoard[7][6].add(whiteBishop2);
 	
 }	
-	 void setShowBoard(SquareUI [][] c)
-		{
-			showBoard = c;
-		}
+    void setShowBoard(SquareUI [][] c)
+    {
+       showBoard = c;
+    }
 		
-		SquareUI[][] getShowChessBoard()
-		{
-			return showBoard;
-		}
+    SquareUI[][] getShowChessBoard()
+    {
+        return showBoard;
+    }
 
-SquareUI[][] createChessBoardUI()
+    SquareUI[][] createChessBoardUI()
 	{
+
 	 showBoard = new SquareUI[8][8]; 
 		
 		for (int i =0; i< 8; i++)
@@ -126,75 +129,86 @@ SquareUI[][] createChessBoardUI()
 		return showBoard;
 	}
 
-void colorSquares(SquareUI chessSquare)
+    void colorSquares(SquareUI chessSquare)
 	{
 		if(chessSquare.getSquare().getColor()== 1)
+        {
 			chessSquare.setBackground(Color.YELLOW);
-		else chessSquare.setBackground(Color.GRAY);
+        }
+		else
+        {
+            chessSquare.setBackground(Color.GRAY);
+        }
 	}
 
-public void mouseClicked(MouseEvent arg0) {}
+    public void mouseClicked(MouseEvent arg0) {}
 	public void mouseEntered(MouseEvent arg0) {}
 	public void mouseExited(MouseEvent arg0) {}
 	public void mousePressed(MouseEvent arg0) {
             
-		/* textArea3.append((game.getPiece(game.getSqs(textfield1.getText()))).toString());
-			game.selectSquare((game.getPiece(game.getSqs(textfield1.getText()))), game.getSqs(textfield1.getText()),game.getSqs(textfield2.getText()) );
-			textArea3.append((game.getPiece(game.getSqs(textfield2.getText()))).toString()); 
-			 */
+    //ChessUI2.moveLog((game.getPiece(game.getSqsg(textfield1.getText()))).toString());
+    //ChessUI2.moveLog((game.getPiece(game.getSqs(textfield1.getText()))).toStromg());
+    //ChessUI2.moveLog(textfield1.getText(),game.getSqs(textfield2.getText()).tostring());
+    //ChessUI2.moveLog((game.getPiece(game.getSqs(textfield2.getText()))).toString()); 
 		
-            for (int i = 0; i < 8; i++)
-            {  
-                for (int k =0; k < 8; k++)
-                {
-                      if (arg0.getSource() == showBoard[i][k])
-			 
-			
-			      
-                      {
-			 if (clicked == true )
-                          {
+        for (int i = 0; i < 8; i++)
+        {  
+            for (int k =0; k < 8; k++)
+            {
+              if (arg0.getSource() == showBoard[i][k])
+              {
+                 
+                 if (clicked == true )
+                 {
+                         System.out.println(clicked);
 
-                              System.out.println(clicked);
-				
-                             components = showBoard[i][k].getComponents();
-                             showBoard[i][k].removeAll();
-				  
-                             showBoard[i][k].repaint();
-                             clicked = false;
-				  System.out.println((board.locateSq(i,k)));
-				  //piece = game.getPiece(board.locateSq(i,k));
-				  from = board.locateSq(i, k);
-				  
-				System.out.println(showBoard[i][k]);
-				  System.out.println(board.locateSq(i, k));
-				}
-                          else if (clicked == false)
-                          {
-				  try{
-				  to = board.locateSq(i, k);
-                              System.out.println(clicked);
-				   System.out.println("There is a click");
-				  //game.pickUpPiece(piece, from, to);
-                      for (int j = 0; j < components.length; j++)
+                         components = showBoard[i][k].getComponents();
+                         showBoard[i][k].removeAll();
+                      
+                         showBoard[i][k].repaint();
+                         clicked = false;
+                          
+                         ChessUI2.moveLog(board.locateSq(i,k).toString());
+                          
+                         //piece = game.getPiece(board.locateSq(i,k));
+                         from = board.locateSq(i, k);
+                      
+                         System.out.println(showBoard[i][k]);
+                         System.out.println(board.locateSq(i, k));
+
+                }
+                else if (clicked == false)
+                {
+                      try
                       {
-                          showBoard[i][k].add(components[j]);
-			        System.out.println(board.locateSq(i, k));
+                          to = board.locateSq(i, k);
+                          System.out.println(clicked);
+                          System.out.println("There is a click");
+                          //game.pickUpPiece(piece, from, to);
+
+                              for (int j = 0; j < components.length; j++)
+                              {
+                                  showBoard[i][k].add(components[j]);
+                                  System.out.println(board.locateSq(i, k));
+                              }
+                 
+                              showBoard[i][k].repaint();
+                              clicked = true;
+                  
                       }
-		     
-                      showBoard[i][k].repaint();
-                      clicked = true;
-			
-		      
-                          }
-		  
-		  catch (Exception e)
-		  {e.getMessage();}}
+                      catch (Exception e)
+                      {
+                          e.getMessage();
+                      }
+                  }
                 }
             }
-            }
         }
-	public void mouseReleased(MouseEvent arg0) {}
+    }
+
+	public void mouseReleased(MouseEvent arg0) 
+    {
+    }
 
 }
 
